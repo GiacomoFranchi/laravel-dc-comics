@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="container py-5">
+        <div class="d-flex justify-content-between pb-5">
         <h1>I nostri Comics</h1>
+
+            <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi un Comic</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -20,7 +24,7 @@
                         <td>{{ $comic->tipologia }}</td>
                         <td>
                             <button>
-                                <a href="">INFO</a>
+                                <a href="{{route('comics.show', ['comic' => $comic->id])}}">INFO</a>
                             </button>
                         </td>
                     </tr>
