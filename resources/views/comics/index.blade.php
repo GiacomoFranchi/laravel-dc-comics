@@ -26,6 +26,9 @@
                             <button>
                                 <a href="{{route('comics.show', ['comic' => $comic->id])}}">INFO</a>
                             </button>
+                            <button>
+                                <a href="{{route('comics.edit', ['comic' => $comic->id])}}">MODIFICA</a>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
