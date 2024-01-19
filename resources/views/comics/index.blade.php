@@ -32,7 +32,7 @@
                             <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" class="d-inline-block" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">
+                                <button onclick='confermaElimina()' class="btn btn-danger" type="submit">
                                   ELIMINA
                                 </button>
                               </form>
@@ -42,4 +42,20 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        function confermaElimina() {
+          var richiesta = confirm("Vuoi rimuovere l'opera dalla lista??");
+    
+          if (richiesta === true) {
+            var cancellato = document.getElementById("comic");
+            cancellato.parentNode.removeChild(cancellato);
+            alert("Opera rimossa dalla lista");
+          } else {
+            alert("Operazione annullata");
+            die;
+          }
+        }
+      </script>
+
 @endsection
