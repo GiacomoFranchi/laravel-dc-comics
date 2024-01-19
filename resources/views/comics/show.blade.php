@@ -15,5 +15,11 @@
               </ul>
             </div>
           </div>
+          <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" class="d-inline-block" method="POST">
+              @csrf
+              @method('DELETE')
+              <button class="btn btn-danger my-2" type="submit">
+                ELIMINA
+              </button>
     </div>
 @endsection
