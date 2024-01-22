@@ -38,7 +38,7 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
 
         $comic = new Comic();
         $comic->titolo = $form_data['titolo'];
@@ -88,7 +88,7 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
         $comic_to_update = Comic::findOrFail($id);
         $comic_to_update->update($form_data);
         return redirect()->route('comics.show', ['comic'=>$comic_to_update->id]);

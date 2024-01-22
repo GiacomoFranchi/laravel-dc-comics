@@ -3,10 +3,15 @@
 @section('content')
     <div class="container py-5">
         <div class="d-flex justify-content-between pb-5">
-        <h1>I nostri Comics</h1>
+            <h1>I nostri Comics</h1>
 
             <a class="btn btn-primary" href="{{ route('comics.create') }}">Aggiungi un Comic</a>
         </div>
+        @if (Session::has('message'))
+            <div class="alert alert-success">
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
@@ -24,38 +29,24 @@
                         <td>{{ $comic->tipologia }}</td>
                         <td>
                             <button>
-                                <a href="{{route('comics.show', ['comic' => $comic->id])}}">INFO</a>
+                                <a href="{{ route('comics.show', ['comic' => $comic->id]) }}">INFO</a>
                             </button>
                             <button>
-                                <a href="{{route('comics.edit', ['comic' => $comic->id])}}">MODIFICA</a>
+                                <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}">MODIFICA</a>
                             </button>
-                            <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" class="d-inline-block" method="POST">
+                            <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" class="d-inline-block"
+                                method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button onclick='confermaElimina()' class="btn btn-danger" type="submit">
-                                  ELIMINA
+                                <button data-title="{{$comic->titolo}}" class="btn btn-danger btn-delete" type="submit">
+                                    ELIMINA
                                 </button>
-                              </form>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        @include('partials.delete-modal')
     </div>
-
-    <script>
-        function confermaElimina() {
-          var richiesta = confirm("Vuoi rimuovere l'opera dalla lista??");
-    
-          if (richiesta === true) {
-            var cancellato = document.getElementById("comic");
-            cancellato.parentNode.removeChild(cancellato);
-            alert("Opera rimossa dalla lista");
-          } else {
-            alert("Operazione annullata");
-            die;
-          }
-        }
-      </script>
-
 @endsection

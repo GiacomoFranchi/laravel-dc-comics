@@ -37,7 +37,7 @@
                 <div class="mb-3">
                     <label for="tipologia" class="form-label">Tipologia</label>
                     <select id="tipologia" class="form-select" name="tipologia">
-                        <option @selected($comic->tipologia === 'comicbook') value="comic book">comic book</option>
+                        <option @selected($comic->tipologia === 'comic book') value="comic book">comic book</option>
                         <option @selected($comic->tipologia === 'graphic novel') value="graphic novel">graphic novel</option>
                         <option @selected($comic->tipologia === 'manga') value="manga">manga</option>
                       </select>
